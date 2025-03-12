@@ -539,3 +539,77 @@ except TypeError:
 #   AULA 05
 # =============================================================================
 
+
+### Criando seu próprio repositório
+
+### 
+# 
+# Gerador de números aleatórios
+# Escreva um programa em Python que simule a jogada de dois 
+# dados de seis faces.
+# O programa deve apresentar todos os lançamentos.
+# O programa deve indicar quantas vezes os dados lançados
+# formaram 12 pontos
+#
+###
+
+# Jeito simples e fácil de resolver
+import random
+
+i = 0
+while i < 10:
+    primeiro_dado = random.randrange(1,7)
+    segundo_dado = random.randrange(1,7)
+    print(primeiro_dado, segundo_dado)
+    if primeiro_dado + segundo_dado == 12:
+        print('12 pontos')
+    i += 1
+
+# Agora, utilizando POO
+
+d1 = random.Random()
+d2 = random.Random()
+
+jogadas = []
+duplo_seis = 0
+
+for i in range(10):
+    primeiro_dado = d1.randrange(1,7)
+    segundo_dado = d2.randrange(1,7)
+    jogadas.append((primeiro_dado, segundo_dado))
+    # print(primeiro_dado, segundo_dado)
+    if primeiro_dado + segundo_dado == 12:
+        duplo_seis += 1
+        print('12 pontos')
+    i += 1
+
+print(jogadas)
+print(duplo_seis)
+
+
+### 
+# 
+#   Estatísticas de sinalização
+#   Escreva um programa em Python que leia um arquivo com 
+#   registro de obras de sinalização.
+#   O programa deve apresentar a obra com a implantação mais
+#   antiga.
+#   O programa deve apresentar registros que não apresentam
+#   latitude e longitude.
+#
+###
+
+f = open('sinalizacao.csv')
+
+dados = []
+
+obra_mais_antiga = ''
+
+for linha in f:
+    print(linha.strip().split(';'))
+    print(linha.strip().split(';')[4])
+    if obra_mais_antiga == '' or obra_mais_antiga > linha.strip().split(';')[4]:
+        obra_mais_antiga = linha.strip().split(';')[4]
+    dados.append(linha.strip().split(';'))
+
+print(obra_mais_antiga)
